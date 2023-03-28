@@ -58,13 +58,14 @@ public class StudentRepository {
     }
     public void deleteteacherbyname(String name){
         teacherHashMap.remove(name);
-        List<String> students = pairDb.get(name);
-        pairDb.remove(name);
-        for(String s : students){
-            if(s.equals(name)){
+        if(pairDb.containsKey(name)){
+            List<String> students = pairDb.get(name);
+            for(String s : students) {
                 studentHashMap.remove(s);
             }
         }
+        pairDb.remove(name);
+
 
     }
     public void deleteAll(){
